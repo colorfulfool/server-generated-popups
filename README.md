@@ -8,7 +8,7 @@ Popup("<%=j render @invoice %>").show('up')
 
 ![Animated demonstration](http://i.giphy.com/xT0GqLzZYnFJ2QCk8M.gif)
 
-Animations, styles -- all included. One line gets you fully working thing.
+Animations, styles — all included. One line gets you a fully working solution.
 
 Perfect with [Server-generated JavaScript Responses](https://signalvnoise.com/posts/3697-server-generated-javascript-responses) and [Turbolinks™](https://github.com/turbolinks/turbolinks), but not limited to them.
 
