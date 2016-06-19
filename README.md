@@ -1,13 +1,9 @@
-You want to briefly show something to the user. You decide on a popup. You look at your options: `window.open()` is easy, but is blocked by the browser when called not in a `click` handler; JavaScript plugins out there are over-engineered and want you to create dedicated routes, hidden links or embed your content where it doesn't belong just to accomodate them. Oh boy. Does it have to be that bad?
+You want to briefly show something to the user. You decide on a popup. You look at your options: `window.open()` is easy, but is blocked by the browser when called not in a `click` handler; JavaScript plugins are over-engineered and want you to create dedicated routes, hidden links or embed your content where it doesn't belong just to accomodate them. Oh boy. Does it have to be that bad? No.
 
-No. Now you can do this:
+Now you can do this:
 
 ```javascript
-window.invoicePreview = Popup("<%=j render @invoice %>").show('up')
-
-$('#approve.button').click(function () {
-  window.invoicePreview.hide('up')
-})
+Popup("<%=j render @invoice %>").show('up')
 ```
 
 Animations, styles -- all included. One line gets you fully working thing.
@@ -18,7 +14,9 @@ Perfect with [Server-generated JavaScript Responses](https://signalvnoise.com/po
 
 ### Rails
 
-	gem 'server-generated-popups'
+```ruby
+gem 'server-generated-popups'
+```
 
 ### Any framework
 
@@ -28,21 +26,29 @@ Download this repo. Grab `popup.js` and `popup.css` from the `assets` directory 
 
 Raise a popup from the bottom of the screen:
 
-	popup = Popup("<div>Hello</div>").show('up')
+```javascript
+popup = Popup("<div>Hello</div>").show('up')
+```
 
 Fall a popup from the top of the screen:
 
-	popup = Popup("<div>Hello</div>").show('down')
+```javascript
+popup = Popup("<div>Hello</div>").show('down')
+```
 
-Lauch the popup away through the top of the screen:
+Launch the popup away through the top of the screen:
 
-	popup.hide('up')
+```javascript
+popup.hide('up')
+```
 
-Sink the popup down into the bottom of the screen:
+Sink the popup down through the bottom of the screen:
 
-	popup.hide('down')
+```javascript
+popup.hide('down')
+```
 
-That's all I ever needed from it. Do you need somethting else? Feel free to contribute.
+That's all I ever need from it. Do you need something else? Feel free to contribute.
 
 ## Credits
 
