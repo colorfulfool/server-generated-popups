@@ -54,4 +54,4 @@ That's all I ever need from it. Do you need something else? Feel free to contrib
 
 ## Credits
 
-colorfulfool.github.io
+[Anton Khamets](http://colorfulfool.github.io)
