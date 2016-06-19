@@ -1,0 +1,11 @@
+.popup {
+  position: fixed;
+  background: white;
+  width: 80%; margin-left: -40%;
+  left: 50%;
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+}
+
+.invoice { 
+  padding: 10px;
+}
