@@ -1,5 +1,5 @@
 .popup {
-  position: fixed;
+  position: fixed; z-index: 999;
   background: white;
   left: 50%;
   box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
