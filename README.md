@@ -4,6 +4,7 @@ Now you can do this:
 
 ```javascript
 Popup("<%=j render @invoice %>").show('up')
+Popup("<%=j render @invoice %>").show('up')
 ```
 
 ![Animated demonstration](http://i.giphy.com/3oEjI0kLsPZ7u6l8ru.gif)
@@ -29,6 +30,12 @@ Then `require popup` into both your styleheet and javascript files.
 Download this repo. Grab `popup.js` and `popup.css` from the `assets` directory and put them wherever you put JS and CSS in your framework.
 
 ## Usage
+
+Create a popup of a custom size by passing those options (values in %):
+
+```javascript
+Popup("<div>Hello</div>", {width: 60, fromTop: 20})
+```
 
 Raise a popup from the bottom of the screen:
 
