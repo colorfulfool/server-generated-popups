@@ -6,7 +6,7 @@ Now you can do this:
 Popup("<%=j render @invoice %>").show('up')
 ```
 
-![Animated demonstration](http://i.giphy.com/l46CkomqcgLa1SWWI.gif)
+![Animated demonstration](http://i.giphy.com/3oEjI0kLsPZ7u6l8ru.gif)
 
 Animations, styles — all included. One line gets you a fully working solution.
 
