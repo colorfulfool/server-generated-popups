@@ -36,6 +36,7 @@ Override the size of a popup by passing these options (values in %):
 Popup("<div>Hello</div>", {width: 60, fromTop: 20})
 ```
 
+<br />
 Raise a popup from the bottom of the screen:
 
 ```javascript
