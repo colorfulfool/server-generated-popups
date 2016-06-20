@@ -14,11 +14,15 @@ Perfect with [Server-generated JavaScript Responses](https://signalvnoise.com/po
 
 ## Installation
 
+The plugin depends on jQuery, but you already have it, do you?
+
 ### Rails
 
 ```ruby
 gem 'server-generated-popups'
 ```
+
+Then `require popup` into both your styleheet and javascript files.
 
 ### Any framework
 
