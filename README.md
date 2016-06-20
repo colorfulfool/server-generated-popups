@@ -4,7 +4,6 @@ Now you can do this:
 
 ```javascript
 Popup("<%=j render @invoice %>").show('up')
-Popup("<%=j render @invoice %>").show('up')
 ```
 
 ![Animated demonstration](http://i.giphy.com/3oEjI0kLsPZ7u6l8ru.gif)
