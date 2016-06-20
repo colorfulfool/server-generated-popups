@@ -3,8 +3,8 @@
 Gem::Specification.new do |gem|
   gem.authors       = ["Anton Khamets"]
   gem.email         = ["colorfulfool@gmail.com"]
-  gem.description   = %q{Show a popup with one line of code}
-  gem.summary       = %q{Show a popup with one of code. Not blocked by browsers. Plug-and-play.}
+  gem.summary       = %q{Show a popup with one line of code}
+  gem.summary       = %q{Show a popup with one line of code. Perfect for format.js responses, and just in JS too.}
   gem.homepage      = "https://github.com/colorfulfool/rails-popup"
 
   gem.files         = `git ls-files`.split($\)
@@ -12,5 +12,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "server-generated-popups"
   gem.require_paths = ["lib"]
-  gem.version       = "1.0.0"
+  gem.version       = "1.1.2"
 end
