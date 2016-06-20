@@ -30,7 +30,7 @@ Download this repo. Grab `popup.js` and `popup.css` from the `assets` directory 
 
 ## Usage
 
-Create a popup of a custom size by passing those options (values in %):
+Override the size of a popup by passing these options (values in %):
 
 ```javascript
 Popup("<div>Hello</div>", {width: 60, fromTop: 20})
