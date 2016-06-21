@@ -1,4 +1,4 @@
-module MagnificPopup
-  class Engine < ::Rails::Engine
+module ServerGeneratedPopups
+  class Engine < Rails::Engine
   end
 end
