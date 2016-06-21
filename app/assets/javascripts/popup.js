@@ -12,8 +12,8 @@ function Popup(html, options) {
   distanceFromTop = options.fromTop.toString() + '%'
   
   function move(from, to, callback) {
-    $(this.popupWindow).css('top', from)
-    $(this.popupWindow).animate({top: to}, callback)
+    this.popupWindow.css('top', from)
+    this.popupWindow.animate({top: to}, callback)
   }
 
   this.show = function (direction) {
