@@ -61,6 +61,8 @@ Sink the popup down through the bottom of the screen:
 popup.hide('down')
 ```
 
+That's all I ever need from it. Do you need something else? Feel free to contribute.
+
 ### Events
 
 Say, you have buttons in your popup and want to handle clicks on them. Well, my usual advice is to go for `<%= link_to 'Button', remote: true %>` and a [JavaScript response](https://signalvnoise.com/posts/3697-server-generated-javascript-responses), but sometimes you want to do something right there on the front-end. In such case, hook up to `popup:show` event:
@@ -72,8 +74,6 @@ $(document).on('popup:show', function (popup) {
   })
 })
 ```
-
-That's all I ever need from it. Do you need something else? Feel free to contribute.
 
 ## Credits
 
