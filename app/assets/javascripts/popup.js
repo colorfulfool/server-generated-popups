@@ -18,6 +18,8 @@ function Popup(html, options) {
 
   this.show = function (direction) {
     $('body').append(this.popupWindow)
+    $(document).trigger('popup:show', this)
+    
     startFrom = (direction == 'up') ? '150%' : '-50%'
     move(startFrom, distanceFromTop)
     return this;
