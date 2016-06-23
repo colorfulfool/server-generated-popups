@@ -1,4 +1,8 @@
 function Popup(html, options) {
+  return new PopupClass(html, options)
+}
+
+function PopupClass(html, options) {
   contents = $(html)
   this.popupWindow = $('<div class="popup"></div>')
 
@@ -9,24 +13,23 @@ function Popup(html, options) {
   })
   this.popupWindow.append(contents)
 
-  distanceFromTop = options.fromTop.toString() + '%'
+  this.distanceFromTop = options.fromTop.toString() + '%'
+}
   
-  function move(from, to, callback) {
-    this.popupWindow.css('top', from)
-    this.popupWindow.animate({top: to}, callback)
-  }
+PopupClass.prototype.move = function (from, to, callback) {
+  this.popupWindow.css('top', from)
+  this.popupWindow.animate({top: to}, callback)
+}
 
-  this.show = function (direction, callback) {
-    $('body').append(this.popupWindow)
-    startFrom = (direction == 'up') ? '150%' : '-50%'
-    move(startFrom, distanceFromTop, callback)
-    return this;
-  }
-  this.hide = function (direction) {
-    moveTo = (direction == 'down') ? '150%' : '-50%'
-    move(distanceFromTop, moveTo, function () {
-      this.popupWindow.remove()
-    })
-  }
+PopupClass.prototype.show = function (direction, callback) {
+  $('body').append(this.popupWindow)
+  startFrom = (direction == 'up') ? '150%' : '-50%'
+  this.move(startFrom, this.distanceFromTop, callback)
   return this;
+}
+PopupClass.prototype.hide = function (direction) {
+  moveTo = (direction == 'down') ? '150%' : '-50%'
+  this.move(this.distanceFromTop, moveTo, function () {
+    this.popupWindow.remove()
+  })
 }
