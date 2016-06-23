@@ -16,10 +16,10 @@ function Popup(html, options) {
     this.popupWindow.animate({top: to}, callback)
   }
 
-  this.show = function (direction) {
+  this.show = function (direction, callback) {
     $('body').append(this.popupWindow)
     startFrom = (direction == 'up') ? '150%' : '-50%'
-    move(startFrom, distanceFromTop)
+    move(startFrom, distanceFromTop, callback)
     return this;
   }
   this.hide = function (direction) {

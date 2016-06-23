@@ -61,6 +61,17 @@ Sink the popup down through the bottom of the screen:
 popup.hide('down')
 ```
 
+If you need to do something after the popup slides onto the screen — play an animation and attach a handler to the "Close" button — pass a second argument to the `show` method:
+
+```javascript
+editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', function () {
+  blink($('.heading'))
+  $(this).on('click', '#close.button', function () {
+  	editInvoiceDetails.hide('down')
+  })
+})
+```
+
 That's all I ever need from it. Do you need something else? Feel free to contribute.
 
 ## Credits
