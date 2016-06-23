@@ -23,13 +23,13 @@ PopupClass.prototype.move = function (from, to, callback) {
 
 PopupClass.prototype.show = function (direction, callback) {
   $('body').append(this.popupWindow)
-  startFrom = (direction == 'up') ? '150%' : '-50%'
+  startFrom = (direction == 'up') ? '180%' : '-80%'
   this.move(startFrom, this.distanceFromTop, callback)
   return this;
 }
 PopupClass.prototype.hide = function (direction) {
-  moveTo = (direction == 'down') ? '150%' : '-50%'
+  moveTo = (direction == 'down') ? '180%' : '-80%'
   this.move(this.distanceFromTop, moveTo, function () {
-    this.popupWindow.remove()
+    this.remove() // this == $('.popup') here
   })
 }
