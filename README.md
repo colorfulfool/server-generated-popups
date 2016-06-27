@@ -76,4 +76,4 @@ That's all I ever need from it. Do you need something else? Feel free to contrib
 
 ## Credits
 
-The code and the animated demo were extracted from [Invoices for Milestones](http://invoicesformilestones.com), a dead simple project-mamangement tool for self-employed. If you work for yourself, check it out.
+The code and the animated demo were extracted from [Invoices for Milestones](http://invoicesformilestones.com), a dead simple project-manangement tool for self-employed. If you work for yourself, check it out.
