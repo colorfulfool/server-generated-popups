@@ -30,13 +30,6 @@ Download this repo. Grab `popup.js` and `popup.css` from the `assets` directory 
 
 ## Usage
 
-Override the size of a popup by passing these options (values in %):
-
-```javascript
-Popup("<div>Hello</div>", {width: 60, fromTop: 20})
-```
-
-<br />
 Raise a popup from the bottom of the screen:
 
 ```javascript
@@ -61,6 +54,13 @@ Sink the popup down through the bottom of the screen:
 popup.hide('down')
 ```
 
+<br>
+Override the size of a popup by passing these options (values in %):
+
+```javascript
+Popup("<div>Hello</div>", {width: 60, fromTop: 20})
+```
+
 If you need to do something after the popup slides onto the screen — play an animation and attach a handler to the "Close" button — pass a second argument to the `show` method:
 
 ```javascript
@@ -76,4 +76,4 @@ That's all I ever need from it. Do you need something else? Feel free to contrib
 
 ## Credits
 
-The code and the animated demo were extracted from [Invoices for Milestones](http://invoicesformilestones.com), a dead simple project-manangement tool for self-employed. If you work for yourself, check it out.
+The code and the animated demo were extracted from [Invoices for Milestones](http://invoicesformilestones.com), a dead simple invoicing tool for self-employed. If you work for yourself, check it out.
