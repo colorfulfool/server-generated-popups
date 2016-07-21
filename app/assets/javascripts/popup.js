@@ -6,14 +6,14 @@ function PopupClass(html, options) {
   contents = $(html)
   this.popupWindow = $('<div class="popup"></div>')
 
-  options = $.extend({}, {width: 70, fromTop: 20}, options || {})
+  options = $.extend({}, {width: 300}, options || {})
   this.popupWindow.css({
-    'width': options.width.toString() + '%', 
-    'margin-left': (options.width/2 * -1).toString() + '%'
+    'width': options.width.toString() + 'px', 
+    'margin-left': (options.width/2 * -1).toString() + 'px'
   })
   this.popupWindow.append(contents)
 
-  this.distanceFromTop = options.fromTop.toString() + '%'
+  this.distanceFromTop = ($(window).height() - this.popupWindow.height())/2
 }
   
 PopupClass.prototype.move = function (from, to, callback) {
