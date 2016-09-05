@@ -14,7 +14,7 @@ Perfect with [Server-generated JavaScript Responses](https://signalvnoise.com/po
 
 ## Installation
 
-The plugin depends on jQuery, but you already have it, do you?
+The plugin depends on jQuery, but you already have it, don't you?
 
 ### Rails
 
