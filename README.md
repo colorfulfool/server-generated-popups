@@ -26,7 +26,7 @@ Then `require popup` into both your styleheet and javascript files.
 
 ### Any framework
 
-Download this repo. Grab `popup.js` and `popup.css` from the `assets` directory and put them wherever you put JS and CSS in your framework.
+Download this repo. Grab `popup.js` and `popup.css` from the `assets` directory and put them wherever you put JS and CSS in your framework. Follow examples in the following section, they are written to apply to any web framework.
 
 ## Usage
 
