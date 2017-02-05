@@ -1,4 +1,4 @@
-Have a controller action that's supposed to respond by showing a [modal dialog](https://en.wikipedia.org/wiki/Modal_window) to the user? 
+Have a controller action that's supposed to respond by showing a [modal dialog](https://en.wikipedia.org/wiki/Modal_window)? 
 
 Now you can do it like this:
 
