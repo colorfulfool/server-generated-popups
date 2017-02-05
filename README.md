@@ -11,7 +11,7 @@ Popup("<%=j render @invoice %>").show('up')
 
 Animations, styles — all included. One line gets you a fully working solution.
 
-Perfect with [Server-generated JavaScript Responses](https://signalvnoise.com/posts/3697-server-generated-javascript-responses) and [Turbolinks™](https://github.com/turbolinks/turbolinks), but not limited to them.
+Perfect with Rails and its [Server-generated JavaScript Responses](https://signalvnoise.com/posts/3697-server-generated-javascript-responses), but not limited to them.
 
 ## Installation
 
