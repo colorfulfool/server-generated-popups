@@ -56,13 +56,13 @@ popup.hide('down')
 ```
 
 <br>
-Override the width of a popup by passing the value in px:
+Override the width of the popup by passing the value in px:
 
 ```javascript
 Popup("<div>Hello</div>", {width: 300})
 ```
 
-If you need to do something after the popup slides onto the screen — play an animation and attach a handler to the "Close" button — pass a second argument to the `show` method:
+If you need to do something after the popup slides onto the screen — pass a second argument to the `show` method. Here I play an animation and attach a handler to the "Close" button:
 
 ```javascript
 editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', function () {
