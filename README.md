@@ -13,6 +13,8 @@ Animations, styles — all included. One line gets you a fully working solution.
 
 Perfect with Rails and its [Server-generated JavaScript Responses](https://signalvnoise.com/posts/3697-server-generated-javascript-responses), but not limited to them.
 
+The screenshot above is from [Invoices for Milestones](http://invoicesformilestones.com), where this gem is extracted from. It's a dead simple invoicing tool for self-employed. If you work for yourself, check it out.
+
 ## Installation
 
 The plugin depends on jQuery, but you already have it, don't you?
@@ -74,7 +76,3 @@ editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', function () {
 ```
 
 That's all I ever need from it. Do you need something else? Feel free to contribute.
-
-## Credits
-
-The code and the animated demo were extracted from [Invoices for Milestones](http://invoicesformilestones.com), a dead simple invoicing tool for self-employed. If you work for yourself, check it out.
