@@ -29,16 +29,18 @@ PopupClass.prototype.createBackdrop = function () {
   $('body').append(this.backdrop)
 }
 PopupClass.prototype.showBackdrop = function () {
-  this.backdrop.opacity = 0.5;
+  this.backdrop.css('opacity', 0.5)
 }
 PopupClass.prototype.hideBackdrop = function () {
-  this.backdrop.opacity = 0;
+  this.backdrop.css('opacity', 0)
 }
 PopupClass.prototype.createCloseButton = function () {
 
 }
 
 PopupClass.prototype.show = function (direction, options) {
+  options = options || {}
+
   $('body').append(this.popupWindow)
   beyondScreen = (direction == 'up') ? '180%' : '-80%'
   this.translate(beyondScreen, this.distanceFromTop(), options.callback)
