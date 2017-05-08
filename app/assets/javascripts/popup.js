@@ -35,7 +35,12 @@ PopupClass.prototype.hideBackdrop = function () {
   this.backdrop.css('opacity', 0)
 }
 PopupClass.prototype.createCloseButton = function () {
-
+  closeButton = $('<img class="closeButton" src="../app/assets/images/close-button-grey.svg">')
+  popupObject = this
+  closeButton.click(function () {
+    popupObject.hide('down')
+  })
+  this.popupWindow.append(closeButton)
 }
 
 PopupClass.prototype.show = function (direction, options) {

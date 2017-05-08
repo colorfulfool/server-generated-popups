@@ -11,5 +11,13 @@
 	background-color: black;
 
 	opacity: 0;
-	transition: opacity 0.4s linear;
+	transition: opacity 0.3s linear;
+}
+
+.closeButton {
+	width: 16px; height: 16px;
+	top: 16px; right: 16px;
+
+	position: absolute;
+	cursor: pointer;
 }
