@@ -8,9 +8,8 @@
   </head>
   <script type="text/javascript">
     $(document).ready(function () {
-      Popup("<div style='padding: 10px;'><h2>Hello</h2><p>Lorem ipsum</p></div>").show('up',
-        {backdrop: true, closeButton: true}
-      )
+      popup = Popup("<h2>Hello</h2><p>Lorem ipsum</p>", {padding: '16px'})
+      popup.show('up', {backdrop: true, closeButton: true})
     });
   </script>
   <body>

@@ -9,7 +9,8 @@ function PopupClass(html, options) {
   options = $.extend({}, {width: 300}, options || {})
   this.popupWindow.css({
     'width': options.width.toString() + 'px', 
-    'margin-left': (options.width/2 * -1).toString() + 'px'
+    'margin-left': (options.width/2 * -1).toString() + 'px',
+    'padding': options.padding
   })
   this.popupWindow.append(contents)
 
