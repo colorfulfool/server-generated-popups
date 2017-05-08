@@ -12,25 +12,49 @@ function PopupClass(html, options) {
     'margin-left': (options.width/2 * -1).toString() + 'px'
   })
   this.popupWindow.append(contents)
+
+  this.createBackdrop()
 }
 
 PopupClass.prototype.distanceFromTop = function () {
   return ($(window).height() - this.popupWindow.height())/2
 }
-PopupClass.prototype.move = function (from, to, callback) {
+PopupClass.prototype.translate = function (from, to, callback) {
   this.popupWindow.css('top', from)
   this.popupWindow.animate({top: to}, callback)
 }
 
-PopupClass.prototype.show = function (direction, callback) {
-  $('body').append(this.popupWindow)
-  startFrom = (direction == 'up') ? '180%' : '-80%'
-  this.move(startFrom, this.distanceFromTop(), callback)
-  return this;
+PopupClass.prototype.createBackdrop = function () {
+  this.backdrop = $('<div id="popup-backdrop"></div>')
+  $('body').append(this.backdrop)
 }
+PopupClass.prototype.showBackdrop = function () {
+  this.backdrop.opacity = 0.5;
+}
+PopupClass.prototype.hideBackdrop = function () {
+  this.backdrop.opacity = 0;
+}
+PopupClass.prototype.createCloseButton = function () {
+
+}
+
+PopupClass.prototype.show = function (direction, options) {
+  $('body').append(this.popupWindow)
+  beyondScreen = (direction == 'up') ? '180%' : '-80%'
+  this.translate(beyondScreen, this.distanceFromTop(), options.callback)
+
+  if (options.backdrop)
+    this.showBackdrop()
+  if (options.closeButton)
+    this.createCloseButton()
+  return this
+}
+
 PopupClass.prototype.hide = function (direction) {
-  moveTo = (direction == 'down') ? '180%' : '-80%'
-  this.move(this.distanceFromTop(), moveTo, function () {
+  beyondScreen = (direction == 'down') ? '180%' : '-80%'
+  this.translate(this.distanceFromTop(), beyondScreen, function () {
     this.remove() // this == $('.popup') here
   })
+
+  this.hideBackdrop()
 }
