@@ -45,7 +45,7 @@ PopupClass.prototype.createCloseButton = function () {
 }
 
 PopupClass.prototype.show = function (direction, options) {
-  options = options || {}
+  options = $.extend({backdrop: true, closeButton: true}, options)
 
   $('body').append(this.popupWindow)
   beyondScreen = (direction == 'up') ? '180%' : '-80%'
