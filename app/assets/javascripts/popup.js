@@ -31,10 +31,15 @@ PopupClass.prototype.createBackdrop = function () {
   $('body').append(this.backdrop)
 }
 PopupClass.prototype.showBackdrop = function () {
+  this.backdrop.css('visibility', 'visible')
   this.backdrop.css('opacity', 0.5)
 }
 PopupClass.prototype.hideBackdrop = function () {
-  this.backdrop.css('opacity', 0)
+  backdrop = this.backdrop
+  backdrop.css('opacity', 0)
+  setTimeout(function () {
+    backdrop.css('visibility', 'hidden')
+  }, 400)
 }
 PopupClass.prototype.createCloseButton = function () {
   closeButton = $('<div class="closeButton"></div>')
