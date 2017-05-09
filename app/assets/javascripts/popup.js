@@ -6,7 +6,7 @@ function PopupClass(html, options) {
   contents = $(html)
   this.popupWindow = $('<div class="popup"></div>')
 
-  options = $.extend({}, {width: 300}, options || {})
+  options = $.extend({}, {width: 600}, options || {})
   actualWidth = Math.min($(window).width(), options.width) // TODO: use CSS
   this.popupWindow.css({
     'width': actualWidth.toString() + 'px', 

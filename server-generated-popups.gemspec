@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "server-generated-popups"
   gem.require_paths = ["lib"]
-  gem.version       = "1.3.3"
+  gem.version       = "1.3.4"
 
   gem.add_runtime_dependency 'jquery-rails'
 end
