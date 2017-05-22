@@ -6,12 +6,12 @@ function PopupClass(html, options) {
   contents = $(html)
   this.popupWindow = $('<div class="popup"></div>')
 
-  options = $.extend({}, {width: 600}, options || {})
-  actualWidth = Math.min($(window).width(), options.width) // TODO: use CSS
+  this.options = $.extend({}, {width: 600}, options || {})
+  actualWidth = Math.min($(window).width(), this.options.width) // TODO: use CSS
   this.popupWindow.css({
     'width': actualWidth.toString() + 'px', 
     'margin-left': (actualWidth/2 * -1).toString() + 'px',
-    'padding': options.padding
+    'padding': this.options.padding
   })
   this.popupWindow.append(contents)
 
@@ -43,6 +43,8 @@ PopupClass.prototype.hideBackdrop = function () {
 }
 PopupClass.prototype.createCloseButton = function () {
   closeButton = $('<div class="closeButton"></div>')
+  margin = this.options.padding || '16px'
+  closeButton.css({top: margin, right: margin})
   popupObject = this
   closeButton.click(function () {
     popupObject.hide('down')
