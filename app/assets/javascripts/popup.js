@@ -43,7 +43,7 @@ PopupClass.prototype.hideBackdrop = function () {
 }
 PopupClass.prototype.createCloseButton = function () {
   closeButton = $('<div class="closeButton"></div>')
-  margin = this.options.padding || '16px'
+  margin = this.options.closeButtonPadding || this.options.padding || '16px'
   closeButton.css({top: margin, right: margin})
   popupObject = this
   closeButton.click(function () {
