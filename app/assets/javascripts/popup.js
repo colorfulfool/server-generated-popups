@@ -2,64 +2,84 @@ function Popup(html, options) {
   return new PopupClass(html, options)
 }
 
-// Constructs a Popup object.
-// Options: width = 600, padding = null
-function PopupClass(html, options) {
-  contents = $(html)
-  this.popupWindow = $('<div class="popup"></div>')
+function createElement(html) {
+  div = document.createElement('div')
+  div.innerHTML = html
+  generated = div.childNodes
+  return (generated.length == 1 ? generated[0] : generated)
+}
 
-  this.options = $.extend({}, {width: 600}, options || {})
-  actualWidth = Math.min($(window).width(), this.options.width) // TODO: use CSS
-  this.popupWindow.css({
+function setStyle(element, properties) {
+  Object.assign(element.style, properties)
+}
+
+function defaultsFor(options, defaultOptions) {
+  Object.assign(defaultOptions, options)
+}
+
+
+// Constructs a Popup object.
+// Options: width, padding
+function PopupClass(html, options) {
+  this.options = defaultsFor(options, {width: 600})
+
+  this.popupWindow = createElement('<div class="popup">' + html + '</div>')
+
+  actualWidth = Math.min(window.innerWidth, this.options.width)
+  setStyle(this.popupWindow, {
     'width': actualWidth.toString() + 'px', 
     'margin-left': (actualWidth/2 * -1).toString() + 'px',
     'padding': this.options.padding
   })
-  this.popupWindow.append(contents)
 
   this.createBackdrop()
 }
 
+
 PopupClass.prototype.distanceFromTop = function () {
-  return ($(window).height() - this.popupWindow.height())/2
+  return (window.innerHeight - this.popupWindow.offsetHeight)/2
 }
 PopupClass.prototype.translate = function (from, to, callback) {
-  this.popupWindow.css('top', from)
+  setStyle(this.popupWindow, {top: from})
   this.popupWindow.animate({top: to}, callback)
 }
 
+
 PopupClass.prototype.createBackdrop = function () {
-  this.backdrop = $('<div id="popup-backdrop"></div>')
-  $('body').append(this.backdrop)
+  this.backdrop = createElement('<div id="popup-backdrop"></div>')
+  document.body.appendChild(this.backdrop)
 }
 PopupClass.prototype.showBackdrop = function () {
-  this.backdrop.css('visibility', 'visible')
-  this.backdrop.css('opacity', 0.5)
+  setStyle(this.backdrop, {visibility: 'visible'})
+  setStyle(this.backdrop, {opacity: 0.5})
 }
 PopupClass.prototype.hideBackdrop = function () {
   backdrop = this.backdrop
-  backdrop.css('opacity', 0)
+  setStyle(backdrop, {opacity: 0})
   setTimeout(function () {
-    backdrop.css('visibility', 'hidden')
+    setStyle(backdrop, {visibility: 'hidden'})
   }, 400)
 }
+
 PopupClass.prototype.createCloseButton = function () {
-  closeButton = $('<div class="closeButton"></div>')
+  closeButton = createElement('<div class="closeButton"></div>')
   margin = this.options.closeButtonPadding || this.options.padding || '16px'
-  closeButton.css({top: margin, right: margin})
-  popupObject = this
+  setStyle(closeButton, {top: margin, right: margin})
+
+  thisObject = this
   closeButton.click(function () {
-    popupObject.hide('down')
+    thisObject.hide('down')
   })
-  this.popupWindow.append(closeButton)
+  this.popupWindow.appendChild(closeButton)
 }
 
-// Slides the popup onto the screen.
-// Options: backdrop = true, closeButton = true, callback = null
-PopupClass.prototype.show = function (direction, options) {
-  options = $.extend({backdrop: true, closeButton: true}, options)
 
-  $('body').append(this.popupWindow)
+// Slides the popup onto the screen.
+// Options: backdrop, closeButton, callback
+PopupClass.prototype.show = function (direction, options) {
+  options = defaultsFor(options, {backdrop: true, closeButton: true})
+
+  document.body.appendChild(this.popupWindow)
   beyondScreen = (direction == 'up') ? '180%' : '-80%'
   this.translate(beyondScreen, this.distanceFromTop(), options.callback)
 
@@ -70,12 +90,13 @@ PopupClass.prototype.show = function (direction, options) {
   return this
 }
 
+
 // Slides the popup out of the screen.
 // Accepts no options.
 PopupClass.prototype.hide = function (direction) {
   beyondScreen = (direction == 'down') ? '180%' : '-80%'
   this.translate(this.distanceFromTop(), beyondScreen, function () {
-    this.remove() // this == $('.popup') here
+    this.remove() // here, `this` means $('.popup')
   })
 
   this.hideBackdrop()
