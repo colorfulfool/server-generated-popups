@@ -2,6 +2,8 @@ function Popup(html, options) {
   return new PopupClass(html, options)
 }
 
+// Constructs a Popup object.
+// Options: width = 600, padding = null
 function PopupClass(html, options) {
   contents = $(html)
   this.popupWindow = $('<div class="popup"></div>')
@@ -52,6 +54,8 @@ PopupClass.prototype.createCloseButton = function () {
   this.popupWindow.append(closeButton)
 }
 
+// Slides the popup onto the screen.
+// Options: backdrop = true, closeButton = true, callback = null
 PopupClass.prototype.show = function (direction, options) {
   options = $.extend({backdrop: true, closeButton: true}, options)
 
@@ -66,6 +70,8 @@ PopupClass.prototype.show = function (direction, options) {
   return this
 }
 
+// Slides the popup out of the screen.
+// Accepts no options.
 PopupClass.prototype.hide = function (direction) {
   beyondScreen = (direction == 'down') ? '180%' : '-80%'
   this.translate(this.distanceFromTop(), beyondScreen, function () {
