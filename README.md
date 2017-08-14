@@ -9,6 +9,8 @@ Popup("<%=j render @invoice %>").show('up')
 
 ![Animated demonstration](http://i.giphy.com/3oEjI0kLsPZ7u6l8ru.gif)
 
+Check the [live demo](https://colorfulfool.github.io/server-generated-popups/demo/).
+
 Animations, styles — all included. One line gets you a fully working solution.
 
 Perfect with Rails and its [Server-generated JavaScript Responses](https://signalvnoise.com/posts/3697-server-generated-javascript-responses), but not limited to them.
