@@ -51,13 +51,13 @@ popup.hide('up')
 
 #### Constructor options
 
-Your popup content needs extra *padding* around it to look good? Pass the value in any units:
+Your popup content needs extra **padding** around it to look good? Pass the value in any units:
 
 ```javascript
 Popup("<div>Hello</div>", {padding: '20px'})
 ```
 
-Override *width* of the popup by passing the value in px:
+Override **width** of the popup by passing the value in px:
 
 ```javascript
 Popup("<div>Hello</div>", {width: 300})
@@ -71,7 +71,7 @@ By default the popup will show with a close button in the top right corner and a
 Popup("<div>Hello</div>").show({closeButton: false, backdrop: false})
 ```
 
-If you need to *do something after the popup slides onto the screen* — pass `callback` option:
+If you need to **do something after the popup slides onto the screen** — pass `callback` option:
 
 ```javascript
 editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', {
