@@ -66,9 +66,15 @@ editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', function () {
 })
 ```
 
-That's all I ever need from it. Do you need something else? Feel free to contribute.
+## Deleveopment
 
-## Roadmap
+### Roadmap
 
 - [ ] implement animations and positioning with CSS instead of Javascript
 - [ ] drop jQuery dependence (use vanilla Javascript instead)
+
+### Tools
+
+Open demo/index.html in your browser. Make changes to the code, see the results in real time. 😮
+
+That's all the help I can offer for now.
