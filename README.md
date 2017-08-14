@@ -83,8 +83,8 @@ editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', {
 
 ### Roadmap
 
-- [ ] implement animations and positioning with CSS instead of Javascript
-- [ ] drop jQuery dependence (use vanilla Javascript instead)
+- [x] implement animations and positioning with CSS instead of Javascript
+- [x] drop jQuery dependence (use vanilla Javascript instead)
 
 ### Tools
 
