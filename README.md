@@ -49,20 +49,35 @@ popup.hide('up')
 
 ### Options
 
-Override the width of the popup by passing the value in px:
+#### Constructor options
+
+Your popup content needs extra *padding* around it to look good? Pass the value in any units:
+
+```javascript
+Popup("<div>Hello</div>", {padding: '20px'})
+```
+
+Override *width* of the popup by passing the value in px:
 
 ```javascript
 Popup("<div>Hello</div>", {width: 300})
 ```
 
-If you need to do something after the popup slides onto the screen — pass a second argument to the `show` method. Here I play an animation and attach a handler to the "Close" button:
+#### show method options
+
+By default the popup will show with a close button in the top right corner and a semi-transparent backdrop beind ([like this](https://colorfulfool.github.io/server-generated-popups/demo/)). You can disable either or both:
 
 ```javascript
-editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', function () {
-  blink($('.heading'))
-  $(this).on('click', '#close.button', function () {
-  	editInvoiceDetails.hide('down')
-  })
+Popup("<div>Hello</div>").show({closeButton: false, backdrop: false})
+```
+
+If you need to *do something after the popup slides onto the screen* — pass `callback` option:
+
+```javascript
+editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', {
+  callback: function () {
+    blink($('.heading'))
+  }
 })
 ```
 
