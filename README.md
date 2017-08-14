@@ -19,8 +19,6 @@ The screenshot above is from [Invoices for Milestones](http://invoicesformilesto
 
 ## Installation
 
-The plugin depends on jQuery, but you already have it, don't you?
-
 ### Rails
 
 ```ruby
