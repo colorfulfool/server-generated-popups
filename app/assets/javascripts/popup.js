@@ -8,13 +8,18 @@ function createElement(html) {
   generated = div.childNodes
   return (generated.length == 1 ? generated[0] : generated)
 }
-
+function removeElement(element) {
+  element.outerHTML = ''
+}
+function appendToBody(element) {
+  document.body.appendChild(element)
+}
 function setStyle(element, properties) {
   Object.assign(element.style, properties)
 }
 
 function defaultsFor(options, defaultOptions) {
-  Object.assign(defaultOptions, options)
+  return Object.assign(defaultOptions, options)
 }
 
 
@@ -39,15 +44,33 @@ function PopupClass(html, options) {
 PopupClass.prototype.distanceFromTop = function () {
   return (window.innerHeight - this.popupWindow.offsetHeight)/2
 }
-PopupClass.prototype.translate = function (from, to, callback) {
-  setStyle(this.popupWindow, {top: from})
-  this.popupWindow.animate({top: to}, callback)
+PopupClass.prototype.translate = function (start, finish, callback) {
+  if (start)
+    this.popupWindow.classList.add(start)
+
+  popupWindow = this.popupWindow
+  setTimeout( // wait for CSS to notice `start` class
+    function () { // trigger the CSS animation
+      setStyle(popupWindow, {top: null}) // discard the hard-coded `top`
+      
+      if (isNaN(finish))
+        popupWindow.classList.add(finish)
+      else
+        setStyle(popupWindow, {top: finish})
+      setTimeout( // wait for it to finish
+        function () {
+          popupWindow.classList.remove(start)
+          if (callback)
+            callback()
+        }, 400)
+    }, 1
+  )
 }
 
 
 PopupClass.prototype.createBackdrop = function () {
   this.backdrop = createElement('<div id="popup-backdrop"></div>')
-  document.body.appendChild(this.backdrop)
+  appendToBody(this.backdrop)
 }
 PopupClass.prototype.showBackdrop = function () {
   setStyle(this.backdrop, {visibility: 'visible'})
@@ -67,9 +90,9 @@ PopupClass.prototype.createCloseButton = function () {
   setStyle(closeButton, {top: margin, right: margin})
 
   thisObject = this
-  closeButton.click(function () {
+  closeButton.onclick = function () {
     thisObject.hide('down')
-  })
+  }
   this.popupWindow.appendChild(closeButton)
 }
 
@@ -79,9 +102,9 @@ PopupClass.prototype.createCloseButton = function () {
 PopupClass.prototype.show = function (direction, options) {
   options = defaultsFor(options, {backdrop: true, closeButton: true})
 
-  document.body.appendChild(this.popupWindow)
-  beyondScreen = (direction == 'up') ? '180%' : '-80%'
-  this.translate(beyondScreen, this.distanceFromTop(), options.callback)
+  appendToBody(this.popupWindow)
+  start = direction == 'up' ? 'below-screen' : 'above-screen'
+  this.translate(start, this.distanceFromTop(), options.callback)
 
   if (options.backdrop)
     this.showBackdrop()
@@ -94,9 +117,11 @@ PopupClass.prototype.show = function (direction, options) {
 // Slides the popup out of the screen.
 // Accepts no options.
 PopupClass.prototype.hide = function (direction) {
-  beyondScreen = (direction == 'down') ? '180%' : '-80%'
-  this.translate(this.distanceFromTop(), beyondScreen, function () {
-    this.remove() // here, `this` means $('.popup')
+  popupWindow = this.popupWindow
+
+  finish = direction == 'up' ? 'above-screen' : 'below-screen'
+  this.translate(null, finish, function () {
+    // removeElement(popupWindow)
   })
 
   this.hideBackdrop()
