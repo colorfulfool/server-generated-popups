@@ -121,7 +121,7 @@ PopupClass.prototype.hide = function (direction) {
 
   finish = direction == 'up' ? 'above-screen' : 'below-screen'
   this.translate(null, finish, function () {
-    // removeElement(popupWindow)
+    removeElement(popupWindow)
   })
 
   this.hideBackdrop()
