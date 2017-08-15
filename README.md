@@ -7,9 +7,7 @@ Now you can do it like this:
 Popup("<%=j render @invoice %>").show('up')
 ```
 
-![Animated demonstration](http://i.giphy.com/3oEjI0kLsPZ7u6l8ru.gif)
-
-Check the [live demo](https://colorfulfool.github.io/server-generated-popups/demo/).
+![Animated demonstration](http://media.giphy.com/media/l1J3TsRNQ01aZ5btC/giphy.gif)
 
 Animations, styles — all included. One line gets you a fully working solution.
 
