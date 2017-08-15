@@ -73,6 +73,7 @@ PopupClass.prototype.translate = function (start, finish, callback) {
 
 PopupClass.prototype.createBackdrop = function () {
   this.backdrop = createElement('<div id="popup-backdrop"></div>')
+  this.hideByClickOn(this.backdrop)
   appendToBody(this.backdrop)
 }
 PopupClass.prototype.showBackdrop = function () {
@@ -91,11 +92,14 @@ PopupClass.prototype.createCloseButton = function () {
   margin = this.options.closeButtonPadding || this.options.padding || '16px'
   setStyle(closeButton, {top: margin, right: margin})
 
+  this.hideByClickOn(closeButton)
+  this.popupWindow.appendChild(closeButton)
+}
+PopupClass.prototype.hideByClickOn = function (element) {
   thisObject = this
-  closeButton.onclick = function () {
+  element.onclick = function () {
     thisObject.hide('down')
   }
-  this.popupWindow.appendChild(closeButton)
 }
 
 
