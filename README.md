@@ -88,6 +88,4 @@ editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', {
 
 ### Tools
 
-Open demo/index.html in your browser. Make changes to the code, see the results in real time. 😮
-
-That's all the help I can offer for now.
+Open demo/index.html in your browser. Make changes to the code, see the results in real time.
