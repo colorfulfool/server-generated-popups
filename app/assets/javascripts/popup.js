@@ -2,11 +2,13 @@ function Popup(html, options) {
   return new PopupClass(html, options)
 }
 
-function createElement(html) {
+function createElement(html, style) {
   div = document.createElement('div')
   div.innerHTML = html
-  generated = div.childNodes
-  return (generated.length == 1 ? generated[0] : generated)
+  generated = div.firstChild
+  if (style)
+    setStyle(generated, style)
+  return generated
 }
 function removeElement(element) {
   element.outerHTML = ''
@@ -73,8 +75,7 @@ PopupClass.prototype.createBackdrop = function () {
   appendToBody(this.backdrop)
 }
 PopupClass.prototype.showBackdrop = function () {
-  setStyle(this.backdrop, {visibility: 'visible'})
-  setStyle(this.backdrop, {opacity: 0.5})
+  setStyle(this.backdrop, {visibility: 'visible', opacity: 0.5})
 }
 PopupClass.prototype.hideBackdrop = function () {
   backdrop = this.backdrop
