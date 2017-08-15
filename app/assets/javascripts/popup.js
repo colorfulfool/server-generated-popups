@@ -53,12 +53,13 @@ PopupClass.prototype.translate = function (start, finish, callback) {
   popupWindow = this.popupWindow
   setTimeout( // wait for CSS to notice `start` class
     function () { // trigger the CSS animation
-      setStyle(popupWindow, {top: null}) // discard the hard-coded `top`
-      
-      if (isNaN(finish))
-        popupWindow.classList.add(finish)
-      else
-        setStyle(popupWindow, {top: finish})
+      if (isNaN(finish)) {
+        setStyle(popupWindow, {top: null}) // discard hard-coded `top` to make way
+        popupWindow.classList.add(finish) // for this CSS class' `top`
+      }
+      else {
+        setStyle(popupWindow, {top: finish + 'px'})
+      }
       setTimeout( // wait for it to finish
         function () {
           popupWindow.classList.remove(start)
