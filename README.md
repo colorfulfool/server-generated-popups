@@ -33,16 +33,16 @@ Download this repo. Grab `popup.js` and `popup.css` from the `assets` directory 
 
 ## Usage
 
-Show a popup from the bottom of the screen:
+Raise a popup from the bottom of the screen:
 
 ```javascript
 popup = Popup("<div>Hello</div>").show('up')
 ```
 
-Launch the popup away through the top of the screen:
+Sink the popup down through the bottom of the screen:
 
 ```javascript
-popup.hide('up')
+popup.hide('down')
 ```
 
 ### Options
