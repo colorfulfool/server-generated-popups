@@ -63,7 +63,7 @@ Popup("<div>Hello</div>", {width: 300})
 
 #### show method options
 
-By default the popup will show with a close button in the top right corner and a semi-transparent backdrop beind ([like this](https://colorfulfool.github.io/server-generated-popups/demo/)). You can disable either or both:
+By default the popup will show with a **close button** in the top right corner and a **semi-transparent backdrop** beind ([like this](https://colorfulfool.github.io/server-generated-popups/demo/)). You can disable either or both:
 
 ```javascript
 Popup("<div>Hello</div>").show({closeButton: false, backdrop: false})
