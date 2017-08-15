@@ -79,7 +79,7 @@ editInvoiceDetails = Popup("<%=j render @invoice %>").show('up', {
 })
 ```
 
-## Deleveopment
+## Development
 
 ### Roadmap
 
