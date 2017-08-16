@@ -15,8 +15,6 @@ Animations, styles — all included. One line gets you a fully working solution.
 
 Perfect with Rails and its [Server-generated JavaScript Responses](https://signalvnoise.com/posts/3697-server-generated-javascript-responses), but not limited to them.
 
-The screenshot above is from [Invoices for Milestones](http://invoicesformilestones.com), where this plugin is extracted from. Invoices for Milestones is a dead simple invoicing tool for self-employed. If you work for yourself, check it out.
-
 ## Installation
 
 ### Rails
