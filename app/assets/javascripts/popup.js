@@ -1,6 +1,6 @@
 (function (global) {
-  global['Popup'] = function (html, options) {
-    return new PopupClass(html, options)
+  global['Popup'] = function (contents, options) {
+    return new PopupClass(contents, options)
   }
 
 
@@ -29,13 +29,13 @@
 
   // Constructs a Popup object.
   // Options: width, padding
-  function PopupClass(html, options) {
+  function PopupClass(contents, options) {
     this.options = defaultsFor(options, {width: 600})
 
     popupWidth = Math.min(window.innerWidth, this.options.width)
 
     this.popupWindow = createElement(
-      '<div class="popup">' + html + '</div>', 
+      '<div class="popup">' + contents + '</div>', 
       {
         'width': popupWidth.toString() + 'px', 
         'margin-left': (popupWidth/2 * -1).toString() + 'px',
