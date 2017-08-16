@@ -32,19 +32,28 @@
   function PopupClass(html, options) {
     this.options = defaultsFor(options, {width: 600})
 
-    this.popupWindow = createElement('<div class="popup">' + html + '</div>')
+    popupWidth = Math.min(window.innerWidth, this.options.width)
 
-    actualWidth = Math.min(window.innerWidth, this.options.width)
-    setStyle(this.popupWindow, {
-      'width': actualWidth.toString() + 'px', 
-      'margin-left': (actualWidth/2 * -1).toString() + 'px',
-      'padding': this.options.padding
-    })
+    this.popupWindow = createElement(
+      '<div class="popup">' + html + '</div>', 
+      {
+        'width': popupWidth.toString() + 'px', 
+        'margin-left': (popupWidth/2 * -1).toString() + 'px',
+        'padding': this.options.padding
+      }
+    )
 
     this.createBackdrop()
   }
 
 
+  PopupClass.prototype.hideByClickOn = function (element) {
+    popupObject = this
+    element.onclick = function () {
+      popupObject.hide('down')
+    }
+  }
+  
   PopupClass.prototype.distanceFromTop = function () {
     return (window.innerHeight - this.popupWindow.offsetHeight)/2
   }
@@ -90,18 +99,15 @@
   }
 
   PopupClass.prototype.createCloseButton = function () {
-    closeButton = createElement('<div class="closeButton"></div>')
-    margin = this.options.closeButtonPadding || this.options.padding || '16px'
-    setStyle(closeButton, {top: margin, right: margin})
+    buttonPadding = this.options.closeButtonPadding || this.options.padding || '16px'
+    
+    closeButton = createElement(
+      '<div class="closeButton"></div>', 
+      {top: buttonPadding, right: buttonPadding}
+    )
 
     this.hideByClickOn(closeButton)
     this.popupWindow.appendChild(closeButton)
-  }
-  PopupClass.prototype.hideByClickOn = function (element) {
-    thisObject = this
-    element.onclick = function () {
-      thisObject.hide('down')
-    }
   }
 
 
