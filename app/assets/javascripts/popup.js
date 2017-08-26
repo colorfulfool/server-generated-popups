@@ -88,7 +88,7 @@
     appendToBody(this.backdrop)
   }
   PopupClass.prototype.showBackdrop = function () {
-    setStyle(this.backdrop, {visibility: 'visible', opacity: 0.5})
+    setStyle(this.backdrop, {visibility: 'visible', opacity: 1})
   }
   PopupClass.prototype.hideBackdrop = function () {
     backdrop = this.backdrop
