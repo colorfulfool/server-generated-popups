@@ -22,18 +22,6 @@
     Object.assign(element.style, properties)
   }
 
-  function setElementPosition(element, position) {
-    positionIsClass = isNaN(position)
-
-    if (positionIsClass) {
-      setStyle(element, {top: null}) // discard hard-coded `top` to make way
-      element.classList.add(position) // for this CSS class' `top`
-    }
-    else {
-      setStyle(element, {top: px(position)})
-    }
-  }
-
   Number.prototype.butNoGreaterThan = function (otherNumber) {
     return Math.min(this, otherNumber)
   }
@@ -64,20 +52,23 @@
     }
   }
   
-  PopupClass.prototype.distanceFromTop = function () {
-    return half(window.innerHeight - this.popupWindow.offsetHeight)
+  PopupClass.prototype.currentPosition = () => null
+  PopupClass.prototype.belowScreen = () => '180%'
+  PopupClass.prototype.aboveScreen = () => '-80%'
+  PopupClass.prototype.onScreen = function () {
+    return px( half(window.innerHeight - this.popupWindow.offsetHeight) )
   }
+
   PopupClass.prototype.translate = function (start, finish, callback) {
     if (start)
-      this.popupWindow.classList.add(start)
+      setStyle(this.popupWindow, {top: start})
 
-    setTimeout( // wait for CSS to notice `start` class
+    setTimeout( // wait for CSS to notice `start`
       () => { // trigger the CSS animation
-        setElementPosition(this.popupWindow, finish)
+        setStyle(this.popupWindow, {top: finish})
 
         setTimeout( // wait for it to finish
           () => {
-            this.popupWindow.classList.remove(start)
             if (callback)
               callback()
           }, 400)
@@ -138,8 +129,11 @@
       var callback = callback.bind(this, this.popupWindow)
 
     appendToBody(this.popupWindow)
-    start = direction == 'up' ? 'below-screen' : 'above-screen'
-    this.translate(start, this.distanceFromTop(), callback)
+
+    if (direction == 'up')
+      this.translate(this.belowScreen(), this.onScreen(), callback)
+    else
+      this.translate(this.aboveScreen(), this.onScreen(), callback)
 
     if (this.options.backdrop)
       this.showBackdrop()
@@ -150,11 +144,13 @@
 
 
   // Slides the popup out of screen.
-  PopupClass.prototype.hide = function (direction) {   
-    finish = direction == 'up' ? 'above-screen' : 'below-screen'
-    this.translate(null, finish, () => {
-      removeElement(this.popupWindow)
-    })
+  PopupClass.prototype.hide = function (direction) {
+    var removePopupWindow = () => { removeElement(this.popupWindow) }
+
+    if (direction == 'up')
+      this.translate(this.currentPosition(), this.aboveScreen(), removePopupWindow)
+    else
+      this.translate(this.currentPosition(), this.belowScreen(), removePopupWindow)
 
     this.hideBackdrop()
   }

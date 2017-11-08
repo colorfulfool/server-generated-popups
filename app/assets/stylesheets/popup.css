@@ -8,8 +8,6 @@
   
   transition: all 0.4s linear;
 }
-.above-screen { top: -80%; }
-.below-screen { top: 180%; }
 
 #popup-backdrop {
   z-index: 1040;
