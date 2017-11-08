@@ -48,7 +48,7 @@
 
 
   PopupClass.prototype.hideByClickOn = function (element) {
-    popupObject = this
+    var popupObject = this
     element.onclick = function () {
       popupObject.hide('down')
     }
