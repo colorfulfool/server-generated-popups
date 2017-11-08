@@ -48,25 +48,12 @@
 
 
   // Constructs a Popup object.
-  // Options: width, padding
+  // Options: width, padding, backdrop, closeButton
   function PopupClass(content, options) {
     this.options = defaultsFor(options, 
       {width: 600, backdrop: true, closeButton: true})
 
-    popupWidth = this.options.width.butNoGreaterThan(window.innerWidth)
-
-    this.popupWindow = createElement(
-      '<div class="popup">' + content + '</div>', 
-      {
-        position: 'fixed',
-        left: '50%',
-        width: px( popupWidth ),
-        marginLeft: px( minus(half(popupWidth)) ),
-
-        padding: this.options.padding
-      }
-    )
-
+    this.createPopupWindow(content)
     this.createBackdrop()
   }
 
@@ -98,22 +85,28 @@
     )
   }
 
+  PopupClass.prototype.createPopupWindow = function (content) {
+    popupWidth = this.options.width.butNoGreaterThan(window.innerWidth)
+
+    this.popupWindow = createElement(
+      '<div class="popup">' + content + '</div>', 
+      {
+        position: 'fixed',
+        left: '50%',
+        width: px( popupWidth ),
+        marginLeft: px( minus(half(popupWidth)) ),
+
+        padding: this.options.padding
+      })
+  }
 
   PopupClass.prototype.createBackdrop = function () {
-    this.backdrop = createElement('<div id="popup-backdrop"></div>',
+    this.backdrop = createElement(
+      '<div id="popup-backdrop"></div>',
       { position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 })
 
     this.hideByClickOn(this.backdrop)
     appendToBody(this.backdrop)
-  }
-  PopupClass.prototype.showBackdrop = function () {
-    setStyle(this.backdrop, {visibility: 'visible', opacity: 1})
-  }
-  PopupClass.prototype.hideBackdrop = function () {
-    setStyle(this.backdrop, {opacity: 0})
-    setTimeout(() => {
-      setStyle(this.backdrop, {visibility: 'hidden'})
-    }, 400)
   }
 
   PopupClass.prototype.createCloseButton = function () {
@@ -128,9 +121,18 @@
     this.popupWindow.appendChild(closeButton)
   }
 
+  PopupClass.prototype.showBackdrop = function () {
+    setStyle(this.backdrop, {visibility: 'visible', opacity: 1})
+  }
+  PopupClass.prototype.hideBackdrop = function () {
+    setStyle(this.backdrop, {opacity: 0})
+    setTimeout(() => {
+      setStyle(this.backdrop, {visibility: 'hidden'})
+    }, 400)
+  }
 
-  // Slides the popup onto the screen.
-  // Options: backdrop, closeButton, callback
+
+  // Slides the popup onto screen.
   PopupClass.prototype.show = function (direction, callback) {
     if (callback != undefined)
       var callback = callback.bind(this, this.popupWindow)
@@ -147,8 +149,7 @@
   }
 
 
-  // Slides the popup out of the screen.
-  // Accepts no options.
+  // Slides the popup out of screen.
   PopupClass.prototype.hide = function (direction) {   
     finish = direction == 'up' ? 'above-screen' : 'below-screen'
     this.translate(null, finish, () => {
