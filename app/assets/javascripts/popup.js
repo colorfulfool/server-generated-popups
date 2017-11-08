@@ -82,6 +82,8 @@
     this.popupWindow = createElement(
       '<div class="popup">' + content + '</div>', 
       {
+        zIndex: 1050,
+
         position: 'fixed',
         left: '50%',
         width: px( popupWidth ),
@@ -94,7 +96,12 @@
   PopupClass.prototype.createBackdrop = function () {
     this.backdrop = createElement(
       '<div id="popup-backdrop"></div>',
-      { position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 })
+      { 
+        zIndex: 1040,
+
+        position: 'fixed', 
+        top: 0, left: 0, right: 0, bottom: 0
+      })
 
     this.hideByClickOn(this.backdrop)
     appendToBody(this.backdrop)

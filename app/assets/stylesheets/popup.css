@@ -4,14 +4,10 @@
    The second part defines the look. It is okay to edit. */
 
 .popup {
-  z-index: 1050;
-  
   transition: all 0.4s linear;
 }
 
 #popup-backdrop {
-  z-index: 1040;
-
   opacity: 0;
   transition: opacity 0.3s linear;
 }
