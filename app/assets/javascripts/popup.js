@@ -30,7 +30,8 @@
   // Constructs a Popup object.
   // Options: width, padding
   function PopupClass(content, options) {
-    this.options = defaultsFor(options, {width: 600})
+    this.options = defaultsFor(options, {width: 600, 
+      backdrop: true, closeButton: true})
 
     popupWidth = Math.min(window.innerWidth, this.options.width)
 
@@ -113,16 +114,14 @@
 
   // Slides the popup onto the screen.
   // Options: backdrop, closeButton, callback
-  PopupClass.prototype.show = function (direction, options) {
-    options = defaultsFor(options, {backdrop: true, closeButton: true})
-
+  PopupClass.prototype.show = function (direction, callback) {
     appendToBody(this.popupWindow)
     start = direction == 'up' ? 'below-screen' : 'above-screen'
-    this.translate(start, this.distanceFromTop(), options.callback)
+    this.translate(start, this.distanceFromTop(), callback.bind(this, this.popupWindow))
 
-    if (options.backdrop)
+    if (this.options.backdrop)
       this.showBackdrop()
-    if (options.closeButton)
+    if (this.options.closeButton)
       this.createCloseButton()
     return this
   }
