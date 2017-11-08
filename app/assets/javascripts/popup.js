@@ -3,8 +3,6 @@
     return new PopupClass(content, options)
   }
 
-  var nextPopupId = 0;
-
 
   function createElement(html, style) {
     div = document.createElement('div')
@@ -70,9 +68,8 @@
 
 
   PopupClass.prototype.hideByClickOn = function (element) {
-    var popupObject = this
-    element.onclick = function () {
-      popupObject.hide('down')
+    element.onclick = () => {
+      this.hide('down')
     }
   }
   
@@ -83,14 +80,13 @@
     if (start)
       this.popupWindow.classList.add(start)
 
-    var popupWindow = this.popupWindow
     setTimeout( // wait for CSS to notice `start` class
-      function () { // trigger the CSS animation
-        setElementPosition(popupWindow, finish)
+      () => { // trigger the CSS animation
+        setElementPosition(this.popupWindow, finish)
 
         setTimeout( // wait for it to finish
-          function () {
-            popupWindow.classList.remove(start)
+          () => {
+            this.popupWindow.classList.remove(start)
             if (callback)
               callback()
           }, 400)
@@ -110,10 +106,9 @@
     setStyle(this.backdrop, {visibility: 'visible', opacity: 1})
   }
   PopupClass.prototype.hideBackdrop = function () {
-    backdrop = this.backdrop
-    setStyle(backdrop, {opacity: 0})
-    setTimeout(function () {
-      setStyle(backdrop, {visibility: 'hidden'})
+    setStyle(this.backdrop, {opacity: 0})
+    setTimeout(() => {
+      setStyle(this.backdrop, {visibility: 'hidden'})
     }, 400)
   }
 
@@ -150,12 +145,10 @@
 
   // Slides the popup out of the screen.
   // Accepts no options.
-  PopupClass.prototype.hide = function (direction) {
-    var popupWindow = this.popupWindow
-
+  PopupClass.prototype.hide = function (direction) {   
     finish = direction == 'up' ? 'above-screen' : 'below-screen'
-    this.translate(null, finish, function () {
-      removeElement(popupWindow)
+    this.translate(null, finish, () => {
+      removeElement(this.popupWindow)
     })
 
     this.hideBackdrop()
