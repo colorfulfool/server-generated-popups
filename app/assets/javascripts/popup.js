@@ -37,6 +37,7 @@
   }
 
   function minus(number) { return number * -1 }
+  function half(number) { return number/2 }
   function px(number) { return number.toString() + 'px' }
 
   function defaultsFor(options, defaultOptions) {
@@ -55,12 +56,12 @@
     this.popupWindow = createElement(
       '<div class="popup">' + content + '</div>', 
       {
-        'position': 'fixed',
-        'left': '50%',
-        'width': px(popupWidth), 
-        'margin-left': px( minus(popupWidth/2) ),
+        position: 'fixed',
+        left: '50%',
+        width: px( popupWidth ),
+        marginLeft: px( minus(half(popupWidth)) ),
 
-        'padding': this.options.padding
+        padding: this.options.padding
       }
     )
 
@@ -76,7 +77,7 @@
   }
   
   PopupClass.prototype.distanceFromTop = function () {
-    return (window.innerHeight - this.popupWindow.offsetHeight)/2
+    return half(window.innerHeight - this.popupWindow.offsetHeight)
   }
   PopupClass.prototype.translate = function (start, finish, callback) {
     if (start)
