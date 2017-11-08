@@ -11,7 +11,7 @@ class Popup extends Component {
   render = () => (
     <PopupWindow position={this.state.windowPosition}
       content={this.props.content}
-      shown={this.props.visible}
+      visible={this.props.shown}
       padding={this.props.padding}
       width={this.props.width} />
     <Backdrop visible={this.state.shown} hidePopup={this.hide} />
@@ -19,27 +19,44 @@ class Popup extends Component {
 }
 
 
-const PopupWindow = ({ content, position, padding, width }) => (
-  <div className="popup" style={{top: position}}>{content}</div>
+const PopupWindowElement = VisibleElement.extend`
+  position: fixed;
+  width: { width }px;
+  margin-left: { width/2 * -1 }px;
+
+  padding: {padding};
+
+  transition: top 0.4s linear;
+`
+
+const PopupWindow = (props) => (
+  <PopupWindowElement {...props}>{props.content}</PopupWindowElement>
 )
 
 
-const visible = (visible) =>
-  props.visible ? "opacity: 1; visibility: visible;"
-    : "opacity: 0; visibility: hidden;"
+const visibilityStyle = (visible) =>
+  if (visible)
+    "opacity: 1; visibility: visible;"
+  else
+    "opacity: 0; visibility: hidden;"
 
-const BackdropElement = styled.div`
+const VisibleElement = styled.div`
+  { props => visibilityStyle(props.visible) }
+`
+
+const BackdropElement = VisibleElement.extend`
   position: fixed; z-index: 1040;
   top: 0; left: 0; bottom: 0; right: 0;
-  background-color: black;
+  background-color: rgba(0,0,0,0.5);
 
-  { props => visible(props.visible) }
   transition: opacity 0.3s linear;
 `
 
-const Backdrop = ({ hidePopup }) => (
-  <BackdropElement onClick={hidePopup}></BackdropElement>
-)
+class Backdrop extends Component {
+  render = () => (
+    <BackdropElement onClick={this.props.hidePopup} style={this.visibilityStyle} />
+  )
+}
 
 
 const CloseButton = ({ hidePopup }) => (
