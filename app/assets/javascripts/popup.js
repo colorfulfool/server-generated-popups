@@ -34,6 +34,10 @@
     }
   }
 
+  Number.prototype.butNoGreaterThan = function (otherNumber) {
+    return Math.min(this, otherNumber)
+  }
+
   function minus(number) { return number * -1 }
   function half(number) { return number/2 }
   function px(number) { return number.toString() + 'px' }
@@ -49,7 +53,7 @@
     this.options = defaultsFor(options, 
       {width: 600, backdrop: true, closeButton: true})
 
-    popupWidth = Math.min(window.innerWidth, this.options.width)
+    popupWidth = this.options.width.butNoGreaterThan(window.innerWidth)
 
     this.popupWindow = createElement(
       '<div class="popup">' + content + '</div>', 
