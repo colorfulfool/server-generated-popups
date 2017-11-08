@@ -115,9 +115,12 @@
   // Slides the popup onto the screen.
   // Options: backdrop, closeButton, callback
   PopupClass.prototype.show = function (direction, callback) {
+    if (callback != undefined)
+      var callback = callback.bind(this, this.popupWindow)
+
     appendToBody(this.popupWindow)
     start = direction == 'up' ? 'below-screen' : 'above-screen'
-    this.translate(start, this.distanceFromTop(), callback.bind(this, this.popupWindow))
+    this.translate(start, this.distanceFromTop(), callback)
 
     if (this.options.backdrop)
       this.showBackdrop()
