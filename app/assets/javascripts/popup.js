@@ -3,6 +3,8 @@
     return new PopupClass(content, options)
   }
 
+  var nextPopupId = 0;
+
 
   function createElement(html, style) {
     div = document.createElement('div')
@@ -22,6 +24,21 @@
     Object.assign(element.style, properties)
   }
 
+  function setElementPosition(element, position) {
+    positionIsClass = isNaN(position)
+
+    if (positionIsClass) {
+      setStyle(element, {top: null}) // discard hard-coded `top` to make way
+      element.classList.add(position) // for this CSS class' `top`
+    }
+    else {
+      setStyle(element, {top: px(position)})
+    }
+  }
+
+  function minus(number) { return number * -1 }
+  function px(number) { return number.toString() + 'px' }
+
   function defaultsFor(options, defaultOptions) {
     return Object.assign(defaultOptions, options)
   }
@@ -30,16 +47,19 @@
   // Constructs a Popup object.
   // Options: width, padding
   function PopupClass(content, options) {
-    this.options = defaultsFor(options, {width: 600, 
-      backdrop: true, closeButton: true})
+    this.options = defaultsFor(options, 
+      {width: 600, backdrop: true, closeButton: true})
 
     popupWidth = Math.min(window.innerWidth, this.options.width)
 
     this.popupWindow = createElement(
       '<div class="popup">' + content + '</div>', 
       {
-        'width': popupWidth.toString() + 'px', 
-        'margin-left': (popupWidth/2 * -1).toString() + 'px',
+        'position': 'fixed',
+        'left': '50%',
+        'width': px(popupWidth), 
+        'margin-left': px( minus(popupWidth/2) ),
+        
         'padding': this.options.padding
       }
     )
@@ -65,13 +85,8 @@
     var popupWindow = this.popupWindow
     setTimeout( // wait for CSS to notice `start` class
       function () { // trigger the CSS animation
-        if (isNaN(finish)) {
-          setStyle(popupWindow, {top: null}) // discard hard-coded `top` to make way
-          popupWindow.classList.add(finish) // for this CSS class' `top`
-        }
-        else {
-          setStyle(popupWindow, {top: finish + 'px'})
-        }
+        setElementPosition(popupWindow, finish)
+
         setTimeout( // wait for it to finish
           function () {
             popupWindow.classList.remove(start)

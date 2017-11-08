@@ -4,16 +4,15 @@
    The second part defines the look. It is okay to edit. */
 
 .popup {
-  position: fixed; z-index: 1050;
-  left: 50%;
-
+  z-index: 1050;
   transition: all 0.4s linear;
 }
 .above-screen { top: -80%; }
 .below-screen { top: 180%; }
 
 #popup-backdrop {
-  position: fixed; z-index: 1040;
+  z-index: 1040;
+  position: fixed;
   top: 0; left: 0; bottom: 0; right: 0;
 
   opacity: 0;
