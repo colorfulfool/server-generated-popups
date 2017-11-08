@@ -59,7 +59,7 @@
         'left': '50%',
         'width': px(popupWidth), 
         'margin-left': px( minus(popupWidth/2) ),
-        
+
         'padding': this.options.padding
       }
     )
@@ -99,7 +99,9 @@
 
 
   PopupClass.prototype.createBackdrop = function () {
-    this.backdrop = createElement('<div id="popup-backdrop"></div>')
+    this.backdrop = createElement('<div id="popup-backdrop"></div>',
+      { position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 })
+
     this.hideByClickOn(this.backdrop)
     appendToBody(this.backdrop)
   }
