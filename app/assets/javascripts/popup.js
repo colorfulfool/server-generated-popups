@@ -62,7 +62,7 @@
     if (start)
       this.popupWindow.classList.add(start)
 
-    popupWindow = this.popupWindow
+    var popupWindow = this.popupWindow
     setTimeout( // wait for CSS to notice `start` class
       function () { // trigger the CSS animation
         if (isNaN(finish)) {
@@ -133,7 +133,7 @@
   // Slides the popup out of the screen.
   // Accepts no options.
   PopupClass.prototype.hide = function (direction) {
-    popupWindow = this.popupWindow
+    var popupWindow = this.popupWindow
 
     finish = direction == 'up' ? 'above-screen' : 'below-screen'
     this.translate(null, finish, function () {

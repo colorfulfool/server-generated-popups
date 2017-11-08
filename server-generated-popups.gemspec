@@ -12,6 +12,6 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "server-generated-popups"
   gem.require_paths = ["lib"]
-  gem.version       = "1.4.7"
+  gem.version       = "1.4.8"
   gem.license       = 'MIT'
 end
