@@ -51,6 +51,11 @@
       this.hide('down')
     }
   }
+
+  PopupClass.prototype.bind = function (func) {
+    if (func != undefined)
+      return func.bind(this, this.popupWindow)
+  }  
   
   PopupClass.prototype.currentPosition = () => null
   PopupClass.prototype.belowScreen = () => '180%'
@@ -76,10 +81,10 @@
       setStyle(this.popupWindow, {top: start})
 
     setTimeout( // wait for CSS to notice `start`
-      () => { // trigger the CSS animation
-        setStyle(this.popupWindow, {top: finish})
+      () => {
+        setStyle(this.popupWindow, {top: finish}) // trigger CSS animation
 
-        setTimeout( // wait for it to finish
+        setTimeout( // wait for animation to finish
           () => {
             if (callback)
               callback()
@@ -143,12 +148,9 @@
 
   // Slides the popup onto screen.
   PopupClass.prototype.show = function (direction, callback) {
-    if (callback != undefined)
-      var callback = callback.bind(this, this.popupWindow)
-
-    appendToBody(this.popupWindow)
     
-    this.slideWindow('show', direction, callback)
+    appendToBody(this.popupWindow)
+    this.slideWindow('show', direction, this.bind(callback))
 
     if (this.options.backdrop)
       this.showBackdrop()
@@ -162,7 +164,7 @@
   PopupClass.prototype.hide = function (direction) {
     var callback = () => { removeElement(this.popupWindow) }
 
-    this.slideWindow('hide', direction, callback)
+    this.slideWindow('hide', direction, this.bind(callback))
 
     this.hideBackdrop()
   }
