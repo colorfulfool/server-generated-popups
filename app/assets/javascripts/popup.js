@@ -59,8 +59,15 @@
     return px( half(window.innerHeight - this.popupWindow.offsetHeight) )
   }
 
-  PopupClass.prototype.slideWindow = function (direction, directions, callback) {
-    [start, finish] = directions[direction]
+  PopupClass.prototype.slideWindow = function (action, direction, callback) {
+    [start, finish] = { 
+      show: {
+          up:   [this.belowScreen(), this.onScreen()],
+          down: [this.aboveScreen(), this.onScreen()]},
+      hide: {
+          up:   [this.currentPosition(), this.aboveScreen()],
+          down: [this.currentPosition(), this.belowScreen()]}
+    }[action][direction]
     this.translate(start, finish, callback)
   }
 
@@ -140,11 +147,8 @@
       var callback = callback.bind(this, this.popupWindow)
 
     appendToBody(this.popupWindow)
-
-    this.slideWindow(direction, {
-                     up:   [this.belowScreen(), this.onScreen()],
-                     down: [this.aboveScreen(), this.onScreen()]},
-                     callback)
+    
+    this.slideWindow('show', direction, callback)
 
     if (this.options.backdrop)
       this.showBackdrop()
@@ -158,10 +162,7 @@
   PopupClass.prototype.hide = function (direction) {
     var callback = () => { removeElement(this.popupWindow) }
 
-    this.slideWindow(direction, {
-                     up:   [this.currentPosition(), this.aboveScreen()],
-                     down: [this.currentPosition(), this.belowScreen()]},
-                     callback)
+    this.slideWindow('hide', direction, callback)
 
     this.hideBackdrop()
   }
