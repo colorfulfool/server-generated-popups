@@ -83,11 +83,11 @@
       '<div class="popup">' + content + '</div>', 
       {
         zIndex: 1050,
-
         position: 'fixed',
         left: '50%',
+
         width: px( popupWidth ),
-        marginLeft: px( minus(half(popupWidth)) ),
+        marginLeft: px( -1 * popupWidth/2 ),
 
         padding: this.options.padding
       })
@@ -98,7 +98,6 @@
       '<div id="popup-backdrop"></div>',
       { 
         zIndex: 1040,
-
         position: 'fixed', 
         top: 0, left: 0, right: 0, bottom: 0
       })
