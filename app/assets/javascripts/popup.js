@@ -59,6 +59,11 @@
     return px( half(window.innerHeight - this.popupWindow.offsetHeight) )
   }
 
+  PopupClass.prototype.slideWindow = function (direction, directions, callback) {
+    [start, finish] = directions[direction]
+    this.translate(start, finish, callback)
+  }
+
   PopupClass.prototype.translate = function (start, finish, callback) {
     if (start)
       setStyle(this.popupWindow, {top: start})
@@ -136,10 +141,10 @@
 
     appendToBody(this.popupWindow)
 
-    if (direction == 'up')
-      this.translate(this.belowScreen(), this.onScreen(), callback)
-    else
-      this.translate(this.aboveScreen(), this.onScreen(), callback)
+    this.slideWindow(direction, {
+                     up:   [this.belowScreen(), this.onScreen()],
+                     down: [this.aboveScreen(), this.onScreen()]},
+                     callback)
 
     if (this.options.backdrop)
       this.showBackdrop()
@@ -151,12 +156,12 @@
 
   // Slides the popup out of screen.
   PopupClass.prototype.hide = function (direction) {
-    var removePopupWindow = () => { removeElement(this.popupWindow) }
+    var callback = () => { removeElement(this.popupWindow) }
 
-    if (direction == 'up')
-      this.translate(this.currentPosition(), this.aboveScreen(), removePopupWindow)
-    else
-      this.translate(this.currentPosition(), this.belowScreen(), removePopupWindow)
+    this.slideWindow(direction, {
+                     up:   [this.currentPosition(), this.aboveScreen()],
+                     down: [this.currentPosition(), this.belowScreen()]},
+                     callback)
 
     this.hideBackdrop()
   }
