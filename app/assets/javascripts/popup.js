@@ -152,10 +152,9 @@
     appendToBody(this.popupWindow)
     this.slideWindow('show', direction, this.bind(callback))
 
-    if (this.options.backdrop)
-      this.showBackdrop()
-    if (this.options.closeButton)
-      this.createCloseButton()
+    if (this.options.backdrop)    this.showBackdrop()
+    if (this.options.closeButton) this.createCloseButton()
+      
     return this
   }
 
