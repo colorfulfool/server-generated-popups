@@ -104,7 +104,7 @@
         left: '50%',
 
         width: px( popupWidth ),
-        marginLeft: px( -1 * popupWidth/2 ),
+        marginLeft: px( minus(half(popupWidth)) ),
 
         padding: this.options.padding
       })
