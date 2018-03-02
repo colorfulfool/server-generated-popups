@@ -98,18 +98,13 @@
   }
 
   PopupClass.prototype.translate = function (start, finish, callback) {
-    if (start)
-      setStyle(this.popupWindow, {top: start})
+    if (start) setStyle(this.popupWindow, {top: start})
 
     setTimeout( // wait for CSS to notice `start`
       () => {
         setStyle(this.popupWindow, {top: finish}) // trigger CSS animation
 
-        setTimeout( // wait for animation to finish
-          () => {
-            if (callback)
-              callback()
-          }, 400)
+        setTimeout(() => { if (callback) callback() }, 400) // wait for animation to finish
       }, 1
     )
   }
