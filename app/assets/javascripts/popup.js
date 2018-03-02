@@ -44,6 +44,27 @@
     this.createPopupWindow(content)
     this.createBackdrop()
   }
+  
+  // Slides the popup onto screen.
+  PopupClass.prototype.show = function (direction, callback) {
+    
+    appendToBody(this.popupWindow)
+    this.slideWindow('show', direction, this.bind(callback))
+
+    if (this.options.backdrop)    this.showBackdrop()
+    if (this.options.closeButton) this.createCloseButton()
+      
+    return this
+  }
+
+  // Slides the popup out of screen.
+  PopupClass.prototype.hide = function (direction) {
+    var callback = () => { removeElement(this.popupWindow) }
+
+    this.slideWindow('hide', direction, this.bind(callback))
+
+    this.hideBackdrop()
+  }
 
 
   PopupClass.prototype.hideByClickOn = function (element) {
@@ -144,29 +165,5 @@
       setStyle(this.backdrop, {visibility: 'hidden'})
     }, 400)
   }
-
-
-  // Slides the popup onto screen.
-  PopupClass.prototype.show = function (direction, callback) {
-    
-    appendToBody(this.popupWindow)
-    this.slideWindow('show', direction, this.bind(callback))
-
-    if (this.options.backdrop)    this.showBackdrop()
-    if (this.options.closeButton) this.createCloseButton()
-      
-    return this
-  }
-
-
-  // Slides the popup out of screen.
-  PopupClass.prototype.hide = function (direction) {
-    var callback = () => { removeElement(this.popupWindow) }
-
-    this.slideWindow('hide', direction, this.bind(callback))
-
-    this.hideBackdrop()
-  }
-
 
 })(window)
