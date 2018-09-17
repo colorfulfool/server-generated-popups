@@ -1,4 +1,3 @@
-<sub>views/invoices/show.js.erb<sub>
 ```javascript
 Popup("<%=j render @invoice %>").show('up')
 ```
