@@ -1,6 +1,3 @@
-*Ruby on Rails gives our applications clear-cut structure: one screen transition — one HTTP request — one ERB view. It's simple. It's beautiful. I love it. Click "New" button — that's a controller action. Click "Edit" button — that's a controller action. But what if your edit screen is not its own page, but a pop-up dialog? **Uuuuugh.** Now you have to embed your view for edit action into the view for index action AND stick a JS click handler somewhere to pop that up. This disrupts our clear-cut structure. Damn. What if you could have your button hit a controller action as usual but respond with a popup instead of page visit? Well guess what, now you can!*
-
-<sub>views/invoices/show.js.erb<sub>
 ```javascript
 Popup("<%=j render @invoice %>").show('up')
 ```
