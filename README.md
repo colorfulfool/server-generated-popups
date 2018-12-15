@@ -1,4 +1,4 @@
-*What if your controller could respond with a modal dialog of a page visit? Well guess what, now it can!*
+*What if your controller could respond with a modal dialog instead of a page visit? Well guess what, now it can!*
 
 <sub>views/invoices/show.js.erb<sub>
 ```javascript
